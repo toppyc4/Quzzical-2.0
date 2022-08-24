@@ -1,55 +1,24 @@
-import React, { useEffect, useState } from "react";
-// import Intro from "./Intro";
-// import Question from "./Question";
+import { useState } from "react";
+import topBlob from "./imgs/topBlob.svg";
+import bottomBlob from "./imgs/bottomBlob.svg";
+import Intro from "./Intro";
 
-export default function App() {
-  const [allQuestions, setAllQuestions] = useState([]);
-  const [intro, setIntro] = useState(true);
-
-  // Hard code questions out to get some pictures
-  const question = allQuestions.map((q) => {
-    const question = q.question;
-    const objChoices = q.incorrect_answers + "," + q.correct_answer;
-    const realChoices = objChoices.split(",");
-    console.log(realChoices);
-    return (
-      <div>
-        <p>{question}</p>
-        <div className="choices-div">
-          <div className="choice">{realChoices[0]}</div>
-          <div className="choice">{realChoices[1]}</div>
-          <div className="choice">{realChoices[2]}</div>
-          <div className="choice">{realChoices[3]}</div>
-        </div>
-      </div>
-    );
-  });
-  //console.log(allQuestions)
-
-  useEffect(() => {
-    fetch("https://opentdb.com/api.php?amount=5&type=multiple")
-      .then((res) => res.json())
-      .then((data) => setAllQuestions(data.results));
-  }, []);
-
-  function startQuiz() {
-    setIntro((prevIntro) => !prevIntro);
-    console.log("startQuiz");
-  }
-
-  // map through allQuestions and generate question and choices
-  // into question
-
+const App = () => {
   return (
-    <main>
-      <div className="container">{question}</div>
-    </main>
+    <div className="h-screen relative overflow-hidden">
+      <img
+        src={topBlob}
+        className="absolute top-0 right-0 -rotate-12 translate-x-1/2 -translate-y-1/2 scale-75 sm:scale-50"
+        alt="yellow blob"
+      />
+      <img
+        src={bottomBlob}
+        className="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 scale-75 sm:scale-50"
+        alt="blue blob"
+      />
+      <Intro />
+    </div>
   );
-}
+};
 
-// { intro ?
-//   <Intro
-//     startQuiz={startQuiz}
-//   /> :
-//   sth
-// }
+export default App;
