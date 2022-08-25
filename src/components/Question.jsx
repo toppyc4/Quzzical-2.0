@@ -38,11 +38,11 @@ const Question = ({ questionData, ansRevealed, points }) => {
   };
 
   return (
-    <div className="flex flex-col gap-4 border-b-2 pb-4 border-b-stroke lg:gap-6 lg:pb-6">
+    <div className=" min-w-full flex flex-col gap-4 border-b-2 pb-4 border-b-stroke lg:gap-6 lg:pb-6">
       <p className="text-md font-karla text-text-blue md:text-xl lg:text-2xl">
         {decode(questionData.question)}
       </p>
-      <div className="grid-row gap-4 lg:gap-8">{renderChoices()}</div>
+      <div className="flex flex-row gap-4 lg:gap-8">{renderChoices()}</div>
     </div>
   );
 };
