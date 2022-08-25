@@ -6,7 +6,7 @@ const Choices = ({
   ansRevealed,
   points,
 }) => {
-  let styles = "";
+  let styles = "border-btn-blue";
   if (!ansRevealed && selectedAns === choice.id) {
     styles = "bg-bg-text border-bg-text";
   } else if (ansRevealed && choice.id === ansIndex) {
@@ -16,7 +16,7 @@ const Choices = ({
 
     styles = "border-wrong-red bg-wrong-red opacity-60";
   } else if (ansRevealed) {
-    styles = "opacity-60";
+    styles = "border-btn-blue opacity-60";
   }
 
   const handleClick = () => {
@@ -24,7 +24,7 @@ const Choices = ({
   };
   return (
     <button
-      className={`text-sm text-text-blue border-2 border-btn-blue min-w-fit rounded-lg py-2 px-2 md:text-lg lg:text-lg lg:px-8 lg:rounded-x1 transition-colors ${
+      className={`text-sm text-text-blue border-2 min-w-fit rounded-lg py-2 px-2 md:text-lg lg:text-lg lg:px-8 lg:rounded-x1 transition-colors ${
         !ansRevealed
           ? "hover:bg-bg-text focus:bg-bg-text focus:outline-none"
           : ""
