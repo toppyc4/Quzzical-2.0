@@ -11,12 +11,13 @@ const App = () => {
     <div className="min-h-screen flex items-center justify-center bg-bg-blue relative overflow-hidden">
       <img
         src={topBlob}
-        className="absolute top-0 right-0 -rotate-12 translate-x-[870px] -translate-y-[1100px] sm:scale-50"
+        className="pointer-events-none absolute top-0 right-0 -rotate-12 translate-x-1/2 -translate-y-1/2 sm:scale-50"
         alt="yellow blob"
       />
+      {/* [870px], [1100px], [1000px] */}
       <img
         src={bottomBlob}
-        className="absolute bottom-0 left-0 -translate-x-[1000px] translate-y-1/2 sm:scale-50"
+        className="pointer-events-none absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 sm:scale-50"
         alt="blue blob"
       />
       {quizzing ? <Questions /> : <Intro setQuizzing={setQuizzing} />}
