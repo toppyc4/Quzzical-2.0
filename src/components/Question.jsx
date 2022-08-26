@@ -45,8 +45,8 @@ const Question = ({ questionData, ansRevealed, setPoints, questions }) => {
       />
     ));
   };
-  console.log(questionData);
-  console.log(questions);
+
+  console.log(ansIndex);
 
   return (
     <div className=" min-w-full flex flex-col gap-4 border-b-2 pb-4 border-b-stroke lg:gap-6 lg:pb-6">
