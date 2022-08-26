@@ -1,33 +1,33 @@
 const Choices = ({
   choice,
-  ansIndex,
-  selectedAns,
-  setSelectedAns,
-  ansRevealed,
+  selectedChoice,
+  setSelectedChoice,
+  isGAMEOVER,
+  ans,
 }) => {
   let styles = "border-btn-blue";
-  if (!ansRevealed && selectedAns === choice.id) {
+  if (!isGAMEOVER && selectedChoice === choice.text) {
     styles = "bg-bg-text border-bg-text";
-  } else if (ansRevealed && choice.id === ansIndex) {
+  } else if (isGAMEOVER && choice.text === ans) {
     styles = "border-correct-green bg-correct-green";
-  } else if (ansRevealed && choice.id === selectedAns) {
+  } else if (isGAMEOVER && choice.text === selectedChoice) {
     styles = "border-wrong-red bg-wrong-red opacity-60";
-  } else if (ansRevealed) {
+  } else if (isGAMEOVER) {
     styles = "border-btn-blue opacity-60";
   }
 
-  const handleClick = () => {
-    !ansRevealed && setSelectedAns(choice.id);
+  const handleSelectChoice = () => {
+    !isGAMEOVER && setSelectedChoice(choice.text);
   };
 
   return (
     <button
       className={`text-sm text-text-blue border-2 min-w-fit rounded-lg py-2 px-2 md:text-lg lg:text-lg lg:px-8 lg:rounded-x1 transition-colors ${
-        !ansRevealed
+        !isGAMEOVER
           ? "hover:bg-bg-text focus:bg-bg-text focus:outline-none"
           : ""
       } ${styles}`}
-      onClick={handleClick}
+      onClick={handleSelectChoice}
     >
       {choice.text}
     </button>

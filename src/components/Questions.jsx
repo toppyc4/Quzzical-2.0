@@ -3,7 +3,7 @@ import Question from "./Question";
 
 const Questions = () => {
   const [questions, setQuestions] = useState([]);
-  const [ansRevealed, setAnsRevealed] = useState(false);
+  const [isGAMEOVER, setIsGAMEOVER] = useState(false);
   const [scoreText, setScoreText] = useState("");
   const [points, setPoints] = useState(0);
 
@@ -36,7 +36,7 @@ const Questions = () => {
       <Question
         key={i}
         questionData={question}
-        ansRevealed={ansRevealed}
+        isGAMEOVER={isGAMEOVER}
         setPoints={setPoints}
         questions={questions}
       />
@@ -46,7 +46,7 @@ const Questions = () => {
   const newGame = () => {
     fetchData();
     // getQuestionsFromServer();
-    setAnsRevealed(false);
+    setIsGAMEOVER(false);
     setPoints(0);
     setScoreText("");
   };
@@ -62,23 +62,23 @@ const Questions = () => {
       )}
       <div className="flex flex-col items-center justify-center w-full gap-4 mt-4 md:flex-row md:gap-8">
         <p className="text-md font-karla text-text-blue md:text-xl lg:text-2xl">
-          {ansRevealed && scoreText}
+          {isGAMEOVER && scoreText}
         </p>
       </div>
-      {!ansRevealed ? (
+      {!isGAMEOVER ? (
         <button
           className="self-center text-white bg-btn-blue font-inter px-6 py-2 rounded-md shadow-xl cursor-pointer transition-all hover:opacity-80 active:scale-90 focus:opacity-80 md:text-xl md:px-12 md:py-4 md:rounded-lg"
-          onClick={() => setAnsRevealed(true)}
+          onClick={() => setIsGAMEOVER(true)}
         >
           Check Answers
         </button>
       ) : (
-        <botton
+        <button
           className="self-center text-white bg-btn-blue font-inter px-6 py-2 rounded-md shadow-xl cursor-pointer transition-all hover:opacity-80 active:scale-90 focus:opacity-80 md:text-xl md:px-12 md:py-4 md:rounded-lg"
           onClick={newGame}
         >
           Play again
-        </botton>
+        </button>
       )}
     </div>
   );
