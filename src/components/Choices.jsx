@@ -4,7 +4,6 @@ const Choices = ({
   selectedAns,
   setSelectedAns,
   ansRevealed,
-  points,
 }) => {
   let styles = "border-btn-blue";
   if (!ansRevealed && selectedAns === choice.id) {
@@ -12,8 +11,6 @@ const Choices = ({
   } else if (ansRevealed && choice.id === ansIndex) {
     styles = "border-correct-green bg-correct-green";
   } else if (ansRevealed && choice.id === selectedAns) {
-    console.log(points);
-
     styles = "border-wrong-red bg-wrong-red opacity-60";
   } else if (ansRevealed) {
     styles = "border-btn-blue opacity-60";
@@ -22,6 +19,7 @@ const Choices = ({
   const handleClick = () => {
     !ansRevealed && setSelectedAns(choice.id);
   };
+
   return (
     <button
       className={`text-sm text-text-blue border-2 min-w-fit rounded-lg py-2 px-2 md:text-lg lg:text-lg lg:px-8 lg:rounded-x1 transition-colors ${

@@ -2,7 +2,7 @@ import Choice from "./Choices";
 import { decode } from "html-entities";
 import { useEffect, useState } from "react";
 
-const Question = ({ questionData, ansRevealed, points }) => {
+const Question = ({ questionData, ansRevealed, setPoints, questions }) => {
   const [ansIndex, setAnsIndex] = useState(randomIndex());
   const [selectedAns, setSelectedAns] = useState("");
   const [choices, setChoices] = useState([]);
@@ -11,9 +11,10 @@ const Question = ({ questionData, ansRevealed, points }) => {
     return Math.floor(Math.random() * 4);
   }
 
+  // reset id, position, selection after fetching new set of questions
   useEffect(() => {
     const allChoices = [...questionData.incorrect_answers];
-    allChoices.splice(ansIndex, 0, questionData.correct_answer);
+    allChoices.splice(ansIndex, 0, `cA:${questionData.correct_answer}`);
     setChoices(
       allChoices.map((choice, i) => ({
         id: i,
@@ -21,7 +22,16 @@ const Question = ({ questionData, ansRevealed, points }) => {
         selected: false,
       }))
     );
-  }, []);
+    setAnsIndex(randomIndex());
+    setSelectedAns("");
+  }, [questions]);
+
+  // count score
+  useEffect(() => {
+    ansRevealed &&
+      ansIndex === selectedAns &&
+      setPoints((prevPoint) => (prevPoint += 1));
+  }, [ansRevealed]);
 
   const renderChoices = () => {
     return choices.map((choice) => (
@@ -32,10 +42,11 @@ const Question = ({ questionData, ansRevealed, points }) => {
         selectedAns={selectedAns}
         setSelectedAns={setSelectedAns}
         ansIndex={ansIndex}
-        points={points}
       />
     ));
   };
+  console.log(questionData);
+  console.log(questions);
 
   return (
     <div className=" min-w-full flex flex-col gap-4 border-b-2 pb-4 border-b-stroke lg:gap-6 lg:pb-6">
