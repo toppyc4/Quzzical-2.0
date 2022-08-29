@@ -59,7 +59,7 @@ export const StartModal = ({ onSelectParams, setQuizzing, onClose }) => {
       </div>
 
       {/* difficulty selector here */}
-      <h3 className='text-lg font-medium'>Difficulties:</h3>
+      <h3 className='text-lg font-medium'>Difficulties: </h3>
       <div>
         <span onClick={() => setParams({ ...params, difficulty: "easy" })}>
           easy
@@ -69,10 +69,10 @@ export const StartModal = ({ onSelectParams, setQuizzing, onClose }) => {
       </div>
 
       {/* maybe add amount of questions here? */}
-      <h3 className='text-lg font-medium'>Amount of questions:</h3>
+      <h3 className='text-lg font-medium'>Choose amount of questions: </h3>
       <p>add sth to choose from</p>
 
-      <h3 className='text-lg font-medium'>Category:</h3>
+      <h3 className='text-lg font-medium'>Category: </h3>
       <div className='flex gap-2 flex-wrap mt-4'>
         {categories ? (
           categories
