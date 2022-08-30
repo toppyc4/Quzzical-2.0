@@ -4,7 +4,7 @@ import { Modal } from "../components/Modal"
 export const StartModal = ({ onSelectParams, setShowIntro, onClose }) => {
   const [categories, setCategories] = useState([])
   const [params, setParams] = useState({
-    amount: 10,
+    amount: 5,
     type: "multiple",
     category: null,
     difficulty: "easy",
@@ -43,6 +43,10 @@ export const StartModal = ({ onSelectParams, setShowIntro, onClose }) => {
     onSelectParams(query)
     // do sth with new query
   }, [params])
+
+  const handleChange = (event) => {
+    setParams({ ...params, amount: event.target.value })
+  }
 
   const handleClose = () => {
     onClose()
@@ -88,7 +92,9 @@ export const StartModal = ({ onSelectParams, setShowIntro, onClose }) => {
       <div>
         <select
           id='questions'
-          class='w-full bg-slate-50 border text-text-blue text-1 rounded-lg block p-1'
+          className='w-full bg-slate-50 border text-text-blue text-1 rounded-lg block p-1'
+          value={params.amount}
+          onChange={handleChange}
         >
           <option value='5' align='center' selected>
             5
