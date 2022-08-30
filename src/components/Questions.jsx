@@ -77,7 +77,7 @@ const Questions = ({ url, setShowIntro, setShowModal }) => {
       {questions?.length ? (
         <>
           <button
-            className='self-end text-white bg-btn-blue font-inter px-4 py-2 rouned-md shadow-xl cursor-pointer transition-all hover:opacity-80 active:scale-90 focus:opacity-80 md:text-xl md:px-6 md:py-2 md:rounded-lg'
+            className='text-sm self-end text-white bg-btn-blue font-inter px-1 py-2 rouned-md shadow-xl cursor-pointer transition-all hover:opacity-80 active:scale-90 focus:opacity-80 md:text-lg lg:text-lg md:px-6 md:rounded-lg'
             onClick={goBack}
           >
             Back

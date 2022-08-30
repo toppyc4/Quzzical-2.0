@@ -44,10 +44,6 @@ export const StartModal = ({ onSelectParams, setShowIntro, onClose }) => {
     // do sth with new query
   }, [params])
 
-  const handleChange = (event) => {
-    setParams({ ...params, amount: event.target.value })
-  }
-
   const handleClose = () => {
     onClose()
     setShowIntro(false)
@@ -93,10 +89,11 @@ export const StartModal = ({ onSelectParams, setShowIntro, onClose }) => {
         <select
           id='questions'
           className='w-full bg-slate-50 border text-text-blue text-1 rounded-lg block p-1'
-          value={params.amount}
-          onChange={handleChange}
+          onChange={(e) => {
+            setParams({ ...params, amount: e.target.value })
+          }}
         >
-          <option value='5' align='center' selected>
+          <option value='5' align='center' defaultValue={5}>
             5
           </option>
           <option value='10' align='center'>
@@ -134,7 +131,8 @@ export const StartModal = ({ onSelectParams, setShowIntro, onClose }) => {
           <span>Loading...</span>
         )}
       </div>
-      <div className='flex gap-x-4 ml-auto mt-2'>
+      <div></div>
+      <div className='flex gap-x-4 ml-auto'>
         <button
           className='flex-1 bg-slate-200 hover:bg-slate-300 font-semibold py-2 px-4 rounded-lg'
           onClick={() => onClose()}
