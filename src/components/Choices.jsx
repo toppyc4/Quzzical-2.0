@@ -1,24 +1,29 @@
+import { useState, useEffect } from "react"
+
 const Choices = ({
   choice,
   selectedChoice,
   setSelectedChoice,
   isGAMEOVER,
   ans,
+  handleFirstClick,
 }) => {
-  let styles = "border-btn-blue";
+  let styles = "border-btn-blue"
+
   if (!isGAMEOVER && selectedChoice === choice.text) {
-    styles = "bg-bg-text border-bg-text";
+    styles = "bg-bg-text border-bg-text"
   } else if (isGAMEOVER && choice.text === ans) {
-    styles = "border-correct-green bg-correct-green";
+    styles = "border-correct-green bg-correct-green"
   } else if (isGAMEOVER && choice.text === selectedChoice) {
-    styles = "border-wrong-red bg-wrong-red opacity-60";
+    styles = "border-wrong-red bg-wrong-red opacity-60"
   } else if (isGAMEOVER) {
-    styles = "border-btn-blue opacity-60";
+    styles = "border-btn-blue opacity-60"
   }
 
   const handleSelectChoice = () => {
-    !isGAMEOVER && setSelectedChoice(choice.text);
-  };
+    !isGAMEOVER && setSelectedChoice(choice.text)
+    handleFirstClick()
+  }
 
   return (
     <button
@@ -31,7 +36,7 @@ const Choices = ({
     >
       {choice.text}
     </button>
-  );
-};
+  )
+}
 
-export default Choices;
+export default Choices

@@ -6,6 +6,7 @@ const Questions = ({ url }) => {
   const [isGAMEOVER, setIsGAMEOVER] = useState(false)
   const [points, setPoints] = useState(0)
   const [scoreText, setScoreText] = useState("")
+  const [answeredIndex, setAnsweredIndex] = useState(0)
 
   useEffect(() => {
     fetch(url)
@@ -15,7 +16,7 @@ const Questions = ({ url }) => {
 
   useEffect(() => {
     setScoreText(
-      `Nice, you scored ${points}/${questions.length} correct answers`
+      `Nice, you scored ${points}/${questions.length} correct answer(s)`
     )
   }, [points])
 
@@ -30,6 +31,7 @@ const Questions = ({ url }) => {
     } catch (err) {
       // do sth, wat2do?
       console.log(err)
+      // console.log(answeredIndex)
     }
   }
 
@@ -43,9 +45,10 @@ const Questions = ({ url }) => {
     <Question
       key={i}
       questionData={question}
-      isGAMEOVER={isGAMEOVER}
-      setPoints={setPoints}
       questions={questions}
+      setPoints={setPoints}
+      setAnsweredIndex={setAnsweredIndex}
+      isGAMEOVER={isGAMEOVER}
     />
   ))
 
@@ -54,9 +57,14 @@ const Questions = ({ url }) => {
       window.scrollTo({ top: 0, behavior: "smooth" })
       setQuestions(response)
       setIsGAMEOVER(false)
+      setAnsweredIndex(0)
       setPoints(0)
     })
     // getQuestionsFromServer();
+  }
+
+  function handleSubmit() {
+    answeredIndex === questions.length && setIsGAMEOVER(true)
   }
 
   return (
@@ -75,19 +83,25 @@ const Questions = ({ url }) => {
 
         {questions?.length > 0 && (
           <>
-            {!isGAMEOVER ? (
-              <button
-                className='self-center text-white bg-btn-blue font-inter px-6 py-2 rounded-md shadow-xl cursor-pointer transition-all hover:opacity-80 active:scale-90 focus:opacity-80 md:text-xl md:px-12 md:py-4 md:rounded-lg'
-                onClick={() => setIsGAMEOVER(true)}
-              >
-                Check Answers
-              </button>
-            ) : (
+            {isGAMEOVER ? (
               <button
                 className='self-center text-white bg-btn-blue font-inter px-6 py-2 rounded-md shadow-xl cursor-pointer transition-all hover:opacity-80 active:scale-90 focus:opacity-80 md:text-xl md:px-12 md:py-4 md:rounded-lg'
                 onClick={newGame}
               >
                 Play again
+              </button>
+            ) : answeredIndex < 10 ? (
+              <p className='text-md font-karla text-text-blue md:text-xl lg:text-2xl'>
+                Choose the remaining {questions.length - answeredIndex}{" "}
+                question(s)
+              </p>
+            ) : (
+              <button
+                className='self-center text-white bg-btn-blue font-inter px-6 py-2 rounded-md shadow-xl cursor-pointer transition-all hover:opacity-80 active:scale-90 focus:opacity-80 md:text-xl md:px-12 md:py-4 md:rounded-lg'
+                onClick={handleSubmit}
+                disabled={answeredIndex < 10}
+              >
+                Check Answers
               </button>
             )}
           </>
