@@ -84,9 +84,27 @@ export const StartModal = ({ onSelectParams, setShowIntro, onClose }) => {
         </button>
       </div>
 
-      {/* maybe add amount of questions here? */}
       <h3 className='text-lg font-medium'>Choose amount of questions: </h3>
-      <p>add sth to choose from</p>
+      <div>
+        <select
+          id='questions'
+          class='w-full bg-slate-50 border text-text-blue text-1 rounded-lg block p-1'
+        >
+          <option value='5' align='center' selected>
+            5
+          </option>
+          <option value='10' align='center'>
+            10
+          </option>
+          <option value='15' align='center'>
+            15
+          </option>
+          <option value='20' align='center'>
+            20
+          </option>
+        </select>
+      </div>
+
       <h3 className='text-lg font-medium'>Category: </h3>
       <div className='flex gap-2 flex-wrap'>
         {categories ? (
@@ -110,7 +128,7 @@ export const StartModal = ({ onSelectParams, setShowIntro, onClose }) => {
           <span>Loading...</span>
         )}
       </div>
-      <div className='flex gap-x-4 ml-auto'>
+      <div className='flex gap-x-4 ml-auto mt-2'>
         <button
           className='flex-1 bg-slate-200 hover:bg-slate-300 font-semibold py-2 px-4 rounded-lg'
           onClick={() => onClose()}
