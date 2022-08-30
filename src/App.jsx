@@ -10,7 +10,7 @@ const App = () => {
   const Base_URL = "https://opentdb.com/api.php?"
 
   const [url, setUrl] = useState(Base_URL)
-  const [quizzing, setQuizzing] = useState(false)
+  const [showIntro, setShowIntro] = useState(true)
   const [showModal, setShowModal] = useState(false)
 
   const handleChangeUrl = (params) => setUrl(Base_URL + params)
@@ -27,10 +27,14 @@ const App = () => {
         className='pointer-events-none absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 sm:scale-50'
         alt='blue blob'
       />
-      {quizzing ? (
-        <Questions url={url} />
-      ) : (
+      {showIntro ? (
         <Intro setShowModal={setShowModal} />
+      ) : (
+        <Questions
+          url={url}
+          setShowIntro={setShowIntro}
+          setShowModal={setShowModal}
+        />
       )}
 
       {showModal && (
@@ -44,7 +48,7 @@ const App = () => {
         <StartModal
           onClose={() => setShowModal(false)}
           onSelectParams={handleChangeUrl}
-          setQuizzing={setQuizzing}
+          setShowIntro={setShowIntro}
         />
       )}
     </div>

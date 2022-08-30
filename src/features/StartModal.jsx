@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import { Modal } from "../components/Modal"
 
-export const StartModal = ({ onSelectParams, setQuizzing, onClose }) => {
+export const StartModal = ({ onSelectParams, setShowIntro, onClose }) => {
   const [categories, setCategories] = useState([])
   const [params, setParams] = useState({
     amount: 10,
@@ -46,7 +46,7 @@ export const StartModal = ({ onSelectParams, setQuizzing, onClose }) => {
 
   const handleClose = () => {
     onClose()
-    setQuizzing(true)
+    setShowIntro(false)
   }
 
   return (
@@ -99,7 +99,7 @@ export const StartModal = ({ onSelectParams, setQuizzing, onClose }) => {
                   params.category === category.id ? "bg-bg-text" : "bg-slate-50"
                 } text-text-blue hover:bg-slate-200 rounded-xl p-2 cursor-pointer`}
                 onClick={() => {
-                  console.log("test")
+                  console.log(category.name)
                   setParams({ ...params, category: category.id })
                 }}
               >
@@ -111,11 +111,14 @@ export const StartModal = ({ onSelectParams, setQuizzing, onClose }) => {
         )}
       </div>
       <div className='flex gap-x-4 ml-auto'>
-        <button className='flex-1' onClick={() => onClose()}>
+        <button
+          className='flex-1 bg-slate-200 hover:bg-slate-300 font-semibold py-2 px-4 rounded-lg'
+          onClick={() => onClose()}
+        >
           Back
         </button>
         <button
-          className='flex-1 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
+          className='flex-1 bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg'
           onClick={handleClose}
         >
           Start

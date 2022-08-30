@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import Question from "./Question"
 
-const Questions = ({ url }) => {
+const Questions = ({ url, setShowIntro, setShowModal }) => {
   const [questions, setQuestions] = useState([])
   const [isGAMEOVER, setIsGAMEOVER] = useState(false)
   const [points, setPoints] = useState(0)
@@ -67,8 +67,19 @@ const Questions = ({ url }) => {
     answeredIndex === questions.length && setIsGAMEOVER(true)
   }
 
+  function goBack() {
+    setShowIntro(true)
+    setShowModal(false)
+  }
+
   return (
     <div className='z-10 h-full max-w-6xl flex flex-col justify-center items-start gap-3 p-8 sm:px-16 lg:gap-8 lg:py-16'>
+      <button
+        className='self-end text-white bg-btn-blue font-inter px-4 py-2 rouned-md shadow-xl cursor-pointer transition-all hover:opacity-80 active:scale-90 focus:opacity-80 md:text-xl md:px-6 md:py-2 md:rounded-lg'
+        onClick={goBack}
+      >
+        Back
+      </button>
       {questions?.length ? (
         questionsEl
       ) : (
