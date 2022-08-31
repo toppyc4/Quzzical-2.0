@@ -29,5 +29,6 @@ npm run dev
 
 ## Examples
 
-![img](https://i.imgur.com/6eV4AY7.png)
-![img](https://i.imgur.com/1VdDfo1.png)
+![Screenshot (1)](https://user-images.githubusercontent.com/63254735/187592300-8b7f35d7-0b87-4269-8678-8c5d0e75ae99.png)
+![Screenshot (2)](https://user-images.githubusercontent.com/63254735/187592302-e6347e27-6742-44ad-bb2e-3e0510588855.png)
+![Screenshot (3)](https://user-images.githubusercontent.com/63254735/187592310-299c60e6-2a95-408e-8554-c467cfe5829a.png)
