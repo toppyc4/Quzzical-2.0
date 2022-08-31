@@ -52,12 +52,21 @@ export const StartModal = ({ onSelectParams, setShowIntro, onClose }) => {
   return (
     <Modal>
       <div className='flex flex-col w-full'>
-        <h2 className='text-xl font-semibold'>Choose your question</h2>
+        <h1 className='text-4xl font-bold'>Option</h1>
         <p className='text-gray-500 mt-1'>Whatever you want, buddy </p>
       </div>
 
-      <h3 className='text-lg font-medium'>Difficulties: </h3>
-      <div className='grid grid-cols-3 gap-x-2.5'>
+      <div className='w-full h-[1px] bg-gray-200 my-4' />
+      <h3 className='text-lg font-medium'>Levels of difficulties: </h3>
+      <div className='grid grid-cols-2 gap-2.5'>
+        <button
+          className={`${
+            params.difficulty === null ? "bg-bg-text" : "bg-slate-50"
+          } text-text-blue hover:bg-bg-text rounded-xl p-1.5 cursor-pointer`}
+          onClick={() => setParams({ ...params, difficulty: null })}
+        >
+          Random
+        </button>
         <button
           className={`${
             params.difficulty === "easy" ? "bg-bg-text" : "bg-slate-50"
@@ -84,6 +93,7 @@ export const StartModal = ({ onSelectParams, setShowIntro, onClose }) => {
         </button>
       </div>
 
+      <div className='w-full h-[1px] bg-gray-200 my-4' />
       <h3 className='text-lg font-medium'>Choose amount of questions: </h3>
       <div>
         <select
@@ -108,6 +118,7 @@ export const StartModal = ({ onSelectParams, setShowIntro, onClose }) => {
         </select>
       </div>
 
+      <div className='w-full h-[1px] bg-gray-200 my-4' />
       <h3 className='text-lg font-medium'>Category: </h3>
       <div className='flex gap-2 flex-wrap'>
         {categories ? (
@@ -131,7 +142,7 @@ export const StartModal = ({ onSelectParams, setShowIntro, onClose }) => {
           <span>Loading...</span>
         )}
       </div>
-      <div></div>
+      <div className='w-full h-[1px] bg-gray-200 my-4' />
       <div className='flex gap-x-4 ml-auto'>
         <button
           className='flex-1 bg-slate-200 hover:bg-slate-300 font-semibold py-2 px-4 rounded-lg'
